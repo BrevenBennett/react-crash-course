@@ -2,8 +2,14 @@ import "./App.css";
 import Title from "./components/Title.jsx";
 import Todo from "./components/Todo.jsx";
 import Modal from "./components/Modal.jsx";
+import Counter from "./components/Counter.jsx"
+import React, { useState } from 'react'
 
 function App() {
+  return <Counter />
+
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <div>
       <Title />
@@ -11,14 +17,14 @@ function App() {
         <input type="text" onChange={(event) => {
           console.log(event.target.value)
         }} />
-        <button>Add todo</button>
+        <button onClick={() => setShowModal(true)}>Add todo</button>
       </div>
       <div className="todo__wrapper">
         <Todo title="Finish Frontend Simplified" />
         <Todo title="Finish Interview Section" />
         <Todo title="Land a $100k Job" />
       </div>
-      <Modal modalTitle="Are you sure you want to delete?"/>
+      {showModal && <Modal modalTitle="Comfirm Delete?" />}
     </div>
   );
 }
